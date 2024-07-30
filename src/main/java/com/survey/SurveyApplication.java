@@ -11,10 +11,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalTime;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Optional;
-import java.util.Set;
 
 @SpringBootApplication
 public class SurveyApplication implements CommandLineRunner {
