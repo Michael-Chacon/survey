@@ -35,7 +35,7 @@ public class SurveyApplication implements CommandLineRunner {
 	public void surveyResponses(){
 		Optional<Survey> survey = surveyRepository.findOne(3L);
 		survey.ifPresent(s-> {
-			s.addResponses(new Response("A", LocalTime.now(), new Date())).addResponses(new Response("B", LocalTime.now(), new Date()));
+			s.addResponses(new Response("Aaa", LocalTime.now(), new Date())).addResponses(new Response("Bbb", LocalTime.now(), new Date()));
 			surveyRepository.save(s);
 			System.out.println(s);
 		});

@@ -81,6 +81,22 @@ public class Response {
         this.survey = survey;
     }
 
+    public Set<DetailResponse> getDetailResponses() {
+        return detailResponses;
+    }
+
+    public void setDetailResponses(Set<DetailResponse> detailResponses) {
+        this.detailResponses = detailResponses;
+    }
+
+    public Set<ResponseCatalog> getResponseCatalogs() {
+        return responseCatalogs;
+    }
+
+    public void setResponseCatalogs(Set<ResponseCatalog> responseCatalogs) {
+        this.responseCatalogs = responseCatalogs;
+    }
+
     @Override
     public String toString() {
         return "Response{" +

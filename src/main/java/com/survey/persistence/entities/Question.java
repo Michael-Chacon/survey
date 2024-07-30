@@ -110,6 +110,46 @@ public class Question {
         this.chapter = chapter;
     }
 
+    public String getQuestionParent() {
+        return questionParent;
+    }
+
+    public void setQuestionParent(String questionParent) {
+        this.questionParent = questionParent;
+    }
+
+    public Question getParentQuestion() {
+        return parentQuestion;
+    }
+
+    public void setParentQuestion(Question parentQuestion) {
+        this.parentQuestion = parentQuestion;
+    }
+
+    public Set<Question> getSubQuestions() {
+        return subQuestions;
+    }
+
+    public void setSubQuestions(Set<Question> subQuestions) {
+        this.subQuestions = subQuestions;
+    }
+
+    public Set<DetailResponse> getDetailResponses() {
+        return detailResponses;
+    }
+
+    public void setDetailResponses(Set<DetailResponse> detailResponses) {
+        this.detailResponses = detailResponses;
+    }
+
+    public Set<ResponseCatalog> getResponseCatalogs() {
+        return responseCatalogs;
+    }
+
+    public void setResponseCatalogs(Set<ResponseCatalog> responseCatalogs) {
+        this.responseCatalogs = responseCatalogs;
+    }
+
     @Override
     public String toString() {
         return "Question{" +
