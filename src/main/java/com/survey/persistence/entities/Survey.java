@@ -3,6 +3,8 @@ package com.survey.persistence.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "surveys")
@@ -17,10 +19,19 @@ public class Survey {
     @Column(name = "update_at")
     private Date updateAt;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "survey")
+    private Set<Chapter> chapters;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "survey")
+    private Set<Response> responses;
+
     public Survey() {
+        this.chapters = new HashSet<>();
+        this.responses = new HashSet<>();
     }
 
     public Survey(String nama, String description, Date createAt, Date updateAt) {
+        this();
         this.nama = nama;
         this.description = description;
         this.createAt = createAt;
@@ -67,6 +78,34 @@ public class Survey {
         this.updateAt = updateAt;
     }
 
+
+    public Set<Chapter> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(Set<Chapter> chapters) {
+        this.chapters = chapters;
+    }
+
+    public Survey addChapter(Chapter chapter){
+        chapters.add(chapter);
+        chapter.setSurvey(this);
+        return this;
+    }
+    public Survey addResponses(Response response){
+        responses.add(response);
+        response.setSurvey(this);
+        return this;
+    }
+
+    public Set<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(Set<Response> responses) {
+        this.responses = responses;
+    }
+
     @Override
     public String toString() {
         return "Survey{" +
@@ -75,6 +114,8 @@ public class Survey {
                 ", description='" + description + '\'' +
                 ", createAt=" + createAt +
                 ", updateAt=" + updateAt +
+                ", chapter=" + chapters +
+                ", responses=" + responses +
                 '}';
     }
 }

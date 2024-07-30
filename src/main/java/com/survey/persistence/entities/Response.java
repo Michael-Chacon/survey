@@ -19,6 +19,7 @@ public class Response {
     private Date responseDate;
 
     @ManyToOne
+    @JoinColumn(name = "survey_id")
     private Survey survey;
 
     public Response() {
@@ -68,5 +69,15 @@ public class Response {
 
     public void setSurvey(Survey survey) {
         this.survey = survey;
+    }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "id=" + id +
+                ", nameResponse='" + nameResponse + '\'' +
+                ", responseTime=" + responseTime +
+                ", responseDate=" + responseDate +
+                '}';
     }
 }

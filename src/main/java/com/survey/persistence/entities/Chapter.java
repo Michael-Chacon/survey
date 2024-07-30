@@ -3,6 +3,7 @@ package com.survey.persistence.entities;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "chapter")
 public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +14,7 @@ public class Chapter {
     private String chapterTitle;
 
     @ManyToOne
+    @JoinColumn(name = "survey_id")
     private Survey survey;
 
     public Chapter() {
