@@ -1,9 +1,10 @@
 package com.survey.persistence.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "responses")
@@ -22,10 +23,19 @@ public class Response {
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "response")
+    private Set<DetailResponse> detailResponses;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "response")
+    private Set<ResponseCatalog> responseCatalogs;
+
     public Response() {
+        this.detailResponses = new HashSet<>();
+        this.responseCatalogs = new HashSet<>();
     }
 
     public Response(String nameResponse, LocalTime responseTime, Date responseDate) {
+        this();
         this.nameResponse = nameResponse;
         this.responseTime = responseTime;
         this.responseDate = responseDate;

@@ -13,9 +13,12 @@ public class DetailResponse {
     @Column(name = "response_text")
     private String responseText;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "question_id")
     private Question question;
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "response_id")
     private Response response;
 
     public DetailResponse() {

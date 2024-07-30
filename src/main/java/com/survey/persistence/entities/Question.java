@@ -2,6 +2,9 @@ package com.survey.persistence.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "questions")
 public class Question {
@@ -16,14 +19,35 @@ public class Question {
     private String questionType;
     @Column(name = "comment_question")
     private String commentQuestion;
+    @JoinColumn(name = "question_parent")
+    private String questionParent;
 
     @ManyToOne
+    @JoinColumn(name = "parent_question_id")
+    private Question parentQuestion;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parentQuestion")
+    private Set<Question> subQuestions;
+
+    @ManyToOne
+    @JoinColumn(name = "survey_id")
     private Survey survey;
 
     @ManyToOne
     private Chapter chapter;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private Set<DetailResponse> detailResponses;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    private Set<ResponseCatalog> responseCatalogs;
+
+    public Question() {
+        this.detailResponses = new HashSet<>();
+    }
+
     public Question(String questionNumber, String questionText, String questionType, String commentQuestion) {
+        this();
         this.questionNumber = questionNumber;
         this.questionText = questionText;
         this.questionType = questionType;
