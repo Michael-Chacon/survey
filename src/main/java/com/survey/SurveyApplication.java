@@ -28,8 +28,8 @@ public class SurveyApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		surveyChapter();
-		surveyResponses();
+//		surveyChapter();
+//		surveyResponses();
 	}
 
 	public void surveyResponses(){

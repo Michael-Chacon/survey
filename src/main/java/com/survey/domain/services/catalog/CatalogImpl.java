@@ -3,10 +3,12 @@ package com.survey.domain.services.catalog;
 import com.survey.domain.repository.CatalogRepository;
 import com.survey.persistence.entities.Catalog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CatalogImpl implements ICatalog{
 
     @Autowired
