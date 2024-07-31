@@ -4,6 +4,7 @@ import com.survey.domain.repository.CatalogRepository;
 import com.survey.persistence.entities.Catalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,21 +15,25 @@ public class CatalogImpl implements ICatalog{
     @Autowired
     private CatalogRepository repository;
 
+    @Transactional(readOnly = true)
     @Override
     public List<Catalog> findAll() {
         return (List<Catalog>) repository.findAll();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Optional<Catalog> findById(Long id) {
         return repository.findById(id);
     }
 
+    @Transactional
     @Override
     public Catalog save(Catalog catalog) {
         return repository.save(catalog);
     }
 
+    @Transactional
     @Override
     public Optional<Catalog> update(Long id, Catalog catalog) {
         Optional<Catalog> getCatalog = repository.findById(id);
@@ -41,6 +46,7 @@ public class CatalogImpl implements ICatalog{
         return getCatalog;
     }
 
+    @Transactional
     @Override
     public Optional<Catalog> delete(Long id) {
         Optional<Catalog> getCatalog = repository.findById(id);
